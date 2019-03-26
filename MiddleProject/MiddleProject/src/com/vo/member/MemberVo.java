@@ -23,7 +23,7 @@ public class MemberVo {
 	private int petnum;
 	private char friend;
 	private String f_id;
-	   
+
 	   public MemberVo() {
 	      super();
 	   }
@@ -187,5 +187,4 @@ public class MemberVo {
 	public void setF_id(String f_id) {
 		this.f_id = f_id;
 	}
-
 }

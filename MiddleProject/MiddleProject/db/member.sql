@@ -44,4 +44,3 @@ insert into member values(seq_no.nextval,'user10','0010','유저10','010-10','서울
 
 
 select * from member;
--
