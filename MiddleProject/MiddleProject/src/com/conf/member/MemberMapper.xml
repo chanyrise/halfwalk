@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+  <select id="MemberView" resultType="com.vo.member.MemberVo">
+    select * from Product
+  </select>
+  
+  <select id="MemberFind" resultType="">
+  	select * from Member where no=#{no}
+  </select>
+  
+  <insert id="MemberInsert" >
+  	insert into product (no,item,price,regdate) values(seq_no.nextval,#{item},#{price},#{regdate})
+  </insert>
+  
+  <delete id="MemberDelete" >
+  	delete from product where no=#{no}
+  </delete>
+  
+  <update id="MemberUpdate" parameterType="int">
+  	update product set price=#{price} where no=#{no}
+  </update>
+  
+  
+<!--   select productAll = new select(select * from Product); -->
+</mapper>
