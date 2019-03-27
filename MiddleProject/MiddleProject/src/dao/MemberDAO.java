@@ -2,11 +2,14 @@ package dao;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import vo.*;
@@ -42,30 +45,33 @@ public class MemberDAO { // DAO는 연결하고 CRUD 해야함
 	}
 	
 	//insert
-	public int getInsert(Member no) {
+	public int getInsert(Member pro) {
 		SqlSession session = factory.openSession();
 		int all = 0;
 		try {
-			all = session.insert("memberMapper.memberInsert",no);
-			if(all>0) {
-				session.commit();
-			}
-		}catch (Exception e){
-			e.fillInStackTrace();
-			session.rollback();
+			all = session.insert("memberMapper.memberInsert",pro);
+				
+					if(all>0) {
+						session.commit();
+					}
+				}catch (Exception e){
+					e.fillInStackTrace();
+					session.rollback();
 
-		} finally {
-			session.close();
-		}
-		return all;
-	}
+				} finally {
+					session.close();
+				}
+				return all;
+			}
+	
+			
 	
 	//delete
-	public int getDelete(int no) {
+	public int getDelete(String id) {
 		SqlSession session = factory.openSession();
 		int all = 0;
 		try {
-			all = session.delete("memberMapper.memberDelete",no);
+			all = session.delete("memberMapper.memberDelete",id);
 			if(all>0) {
 				session.commit();
 			}
@@ -78,6 +84,7 @@ public class MemberDAO { // DAO는 연결하고 CRUD 해야함
 		}
 		return all;
 	}
+
 
 		
 	
@@ -99,7 +106,54 @@ public class MemberDAO { // DAO는 연결하고 CRUD 해야함
 		}
 		return all;
 	}
+	
+	
 
+	   public List<Member> getFind(String id) {
+		   
+	      SqlSession session = factory.openSession();
+	      List<Member> all =null;
+	      
+	      try {
+	    	  
+	    	  all=session.selectList("memberMapper.memberFind", id);
+	    	  
+	      } finally {
+				session.close();
+			}
+	      
+	      return all;
+	      
 	}
-
+	   
+	   public Member getLog(Member member) {
+		   SqlSession session = factory.openSession();
+		   Member all = null;
+		   try {
+			   all=session.selectOne("memberMapper.memberLog", member);
+			   
+		   }catch(Exception e) {
+			   System.out.println("로그인 실패");
+			   e.printStackTrace();
+		   }finally {
+			   session.close();
+		   }
+		   return all;
+	   }
+	   
+	   public Member getPwcheck(Member member) {
+		   SqlSession session = factory.openSession();
+		   Member all = null;
+		   try {
+			   all=session.selectOne("memberMapper.memberPwcheck", member);
+			   
+		   }catch(Exception e) {
+			   System.out.println("비번찾기 실패");
+			   e.printStackTrace();
+		   }finally {
+			   session.close();
+		   }
+		   return all;
+	   }
+}
 

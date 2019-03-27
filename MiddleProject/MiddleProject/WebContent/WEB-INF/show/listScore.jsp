@@ -32,16 +32,15 @@
 		<tbody>
 			<c:forEach var="se" items="${all}">
 				<tr class="odd">
-					<td>${se.no }</td>
 					<td>${se.id }</td>
 					<td>${se.pw }</td>
 					<td>${se.n_id }</td>
 					<td>${se.tel }</td>
-					<td>${se.sigo }</td>
+					<td>${se.sido }</td>
 					<td>${se.gu }</td>
 
-					<td><a href="delete.do?del_name=${se.no}">삭제</a></td>
-					<td><a href="find.do?find_name=${se.no}">수정</a></td>
+					<td><a href="delete.do?del_name=${se.id}">삭제</a></td>
+					<td><a href="find.do?find_name=${se.id}">수정</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

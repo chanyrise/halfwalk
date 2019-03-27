@@ -15,7 +15,7 @@ import vo.Member;
 
 @Controller
 public class MemberServlet {
-	
+
 	@Autowired
 	MemberBiz memberbiz;
 
@@ -23,41 +23,40 @@ public class MemberServlet {
 	@RequestMapping("/select.do")
 	public String my_select(Model m) {
 		List<Member> all = memberbiz.getAll();
-		m.addAttribute("all",all);
-		return "WEB-INF/show/listScore.jsp";
+		m.addAttribute("all", all);
+		return "listScore";
 	}
 
-	
-	@RequestMapping("delete.do")
-	public String my_delete(@RequestParam("del_name") int no) {
-		int res = memberbiz.getDelete(no);
-		if(res > 0)
+	@RequestMapping("/delete.do")
+	public String my_delete(@RequestParam("del_name") String id) {
+		int res = memberbiz.getDelete(id);
+		if (res > 0)
 			return "/select.do";
 		return "";
 	}
-	
-//	@RequestMapping(value="/find.do", method = RequestMethod.GET)
-//	public String my_find(@RequestParam("find_name") String name, Model model) {
-//		
-//		Member r = memberbiz.getFind(name);
-//		model.addAttribute("find",r);
-//		return "/WEB-INF/show/updateScore.jsp";
-//		
-//	}
-	
+
 	@RequestMapping("/show/member.do")
 	public String InsertView() {
-		System.out.println("input");
+		
 		return "/WEB-INF/show/member.jsp";
 	}
 
-	
 	@RequestMapping("/insert.do")
-	public String MyInsert(@ModelAttribute("member") Member member) {
-		System.out.println(member.getNo());
-		System.out.println("insert");
+	public String MyInsert(@ModelAttribute("member")Member member) {
+		System.out.println(member.getId());
+		
 		int r = memberbiz.getInsert(member);
 		return "";
 	}
+	
+	@RequestMapping("/update.do")
+	public String MyUpdate(@ModelAttribute("member") Member member) {
+		System.out.println(member.getId());
+		
+		int r = memberbiz.getUpdate(member);
+		return "";
+
+	}
+	
 
 }

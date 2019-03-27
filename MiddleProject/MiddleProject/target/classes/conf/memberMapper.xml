@@ -3,51 +3,53 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  
-<!--no number(4),
-id varchar2(20) primary key,
-pw varchar2(20) NOT NULL,
-n_id varchar2(20) NOT NULL UNIQUE,
-tel varchar2(20) NOT NULL,
-sido varchar2(20) NOT NULL,
-gu varchar2(20) NOT NULL,
-doro varchar2(20) NOT NULL,
-d_juso varchar2(50),
-postnum varchar2(20) NOT NULL,
-email varchar2(20) NOT NULL UNIQUE,
-u_sex char(1) NOT NULL,
-u_birthday date NOT NULL,
-u_name varchar2(20) NOT NULL,
-u_enrollday date NOT NULL,
-status char(1) NOT NULL,
-manage char(1) NOT NULL,
-petnum number NOT NULL,
-friend char(1),
-f_id varchar2(20)  -->
+
+<!--no number(4), id varchar2(20) primary key, pw varchar2(20) NOT NULL, 
+	n_id varchar2(20) NOT NULL UNIQUE, tel varchar2(20) NOT NULL, sido varchar2(20) 
+	NOT NULL, gu varchar2(20) NOT NULL, doro varchar2(20) NOT NULL, d_juso varchar2(50), 
+	postnum varchar2(20) NOT NULL, email varchar2(20) NOT NULL UNIQUE, u_sex 
+	char(1) NOT NULL, u_birthday date NOT NULL, u_name varchar2(20) NOT NULL, 
+	u_enrollday date NOT NULL, status char(1) NOT NULL, manage char(1) NOT NULL, 
+	petnum number NOT NULL, friend char(1), f_id varchar2(20) -->
 
 <mapper namespace="memberMapper">
-  <select id="view" resultType="vo.Member">
-  select * from member 
-  </select>
-  
-  <select id="MemberFind">
-  	select * from member where no=#{no}
-  </select>
-  
-  
-  <insert id="memberInsert" >
-  insert into member (no,id,pw,n_id,tel,sido,gu,doro,d_juso,postnum,email,u_sex,u_birthday,u_name,u_enrollday,status,manage,petnum,friend,f_id)
-  values (seq_no.nextval,#{id},#{pw},#{n_id},#{tel},#{sido},#{gu},#{doro},#{d_juso},#{postnum},#{email},#{u_sex},#{u_birthday},#{u_name},#{u_enrollday},#{status},#{manage},#{petnum},#{friend},#{f_id})
-</insert>
+	<select id="view" resultType="vo.Member">
+		select * from member
+	</select>
 
-<delete id="memberDelete" >
-  delete from member where no = #{no}
-</delete>
+	<select id="memberFind" resultType="vo.Member">
+		select * from member where id=#{id}
 
-<update id="memberUpdate">
-  update member set
-   price = #{tel}
-    where no =#{no}
-</update>
-  
+	</select>
+
+	<!-- <select id="MemberLog" > select * from member where id=#{id} </select> -->
+
+
+	<insert id="memberInsert">
+		insert into member
+		(id,pw,n_id,tel,sido,gu,doro,d_juso,postno,email,u_sex,u_birthday,u_name,u_enrollday,status,manage,petcount,friend,f_id)
+		values
+		(#{id},#{pw},#{n_id},#{tel},#{sido},#{gu},#{doro},#{d_juso},#{postno},#{email},#{u_sex},#{u_birthday},#{u_name},#{u_enrollday},#{status},#{manage},#{petcount},#{friend},#{f_id})
+	</insert><!-- seq_no.nextval, -->
+
+	<delete id="memberDelete">
+		delete from member where id = #{id}
+	</delete>
+
+	<update id="memberUpdate">
+		update member set
+		n_id =#{n_id}, pw = #{pw} ,tel = #{tel}, sido = #{sido}, gu= #{gu} ,
+		doro=#{doro}, d_juso = #{d_juso}, email=#{email} , u_name
+		=#{u_name},manage= #{manage},petcount=#{petcount},friend=#{friend}
+		where id =#{id}
+	</update>
+
+	<select id="memberLog" resultType="vo.Member">
+		select id,pw from member where id = #{id} and pw=#{pw}
+	</select>
+	
+	<select id="memberPwcheck" resultType="vo.Member">
+		select pw from member where id = #{id} and email = #{email}
+	</select>
+
 </mapper>

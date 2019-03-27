@@ -1,10 +1,10 @@
 package vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
 
-	private int no;
+	
 	private String id;
 	private String pw;
 	private String n_id;
@@ -13,28 +13,26 @@ public class Member {
 	private String gu;
 	private String doro;
 	private String d_juso;
-	private String postnum;
+	private String postno;
 	private String email;
-	private char u_sex;
+	private String u_sex;
 	private Date u_birthday;
 	private String u_name;
 	private Date u_enrollday;
-	private char status;
-	private char manage;
-	private int petnum;
-	private char friend;
+	private String status;
+	private String manage;
+	private int petcount;
+	private String friend;
 	private String f_id;
 	   
-	   public Member() {
-	      super();
-	   }
-
-	public int getNo() {
-		return no;
+	public Member() {
+		super();
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public Member(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
 	}
 
 	public String getId() {
@@ -101,12 +99,12 @@ public class Member {
 		this.d_juso = d_juso;
 	}
 
-	public String getPostnum() {
-		return postnum;
+	public String getPostno() {
+		return postno;
 	}
 
-	public void setPostnum(String postnum) {
-		this.postnum = postnum;
+	public void setPostno(String postno) {
+		this.postno = postno;
 	}
 
 	public String getEmail() {
@@ -117,11 +115,11 @@ public class Member {
 		this.email = email;
 	}
 
-	public char getU_sex() {
+	public String getU_sex() {
 		return u_sex;
 	}
 
-	public void setU_sex(char u_sex) {
+	public void setU_sex(String u_sex) {
 		this.u_sex = u_sex;
 	}
 
@@ -149,35 +147,35 @@ public class Member {
 		this.u_enrollday = u_enrollday;
 	}
 
-	public char getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public char getManage() {
+	public String getManage() {
 		return manage;
 	}
 
-	public void setManage(char manage) {
+	public void setManage(String manage) {
 		this.manage = manage;
 	}
 
-	public int getPetnum() {
-		return petnum;
+	public int getPetcount() {
+		return petcount;
 	}
 
-	public void setPetnum(int petnum) {
-		this.petnum = petnum;
+	public void setPetcount(int petcount) {
+		this.petcount = petcount;
 	}
 
-	public char getFriend() {
+	public String getFriend() {
 		return friend;
 	}
 
-	public void setFriend(char friend) {
+	public void setFriend(String friend) {
 		this.friend = friend;
 	}
 
@@ -191,17 +189,14 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Product [no=" + no + ", id=" + id + ", pw=" + pw + ", n_id=" + n_id + ", tel=" + tel + ", sido=" + sido
-				+ ", gu=" + gu + ", doro=" + doro + ", d_juso=" + d_juso + ", postnum=" + postnum + ", email=" + email
+		return "Product [id=" + id + ", pw=" + pw + ", n_id=" + n_id + ", tel=" + tel + ", sido=" + sido
+				+ ", gu=" + gu + ", doro=" + doro + ", d_juso=" + d_juso + ", postno=" + postno + ", email=" + email
 				+ ", u_sex=" + u_sex + ", u_birthday=" + u_birthday + ", u_name=" + u_name + ", u_enrollday="
-				+ u_enrollday + ", status=" + status + ", manage=" + manage + ", petnum=" + petnum + ", friend="
+				+ u_enrollday + ", status=" + status + ", manage=" + manage + ", petcount=" + petcount + ", friend="
 				+ friend + ", f_id=" + f_id + "]";
 	}
+	
 
-	   
-	   
-	   
-	   
 	   
 	}
 
