@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  
+<!--no number(4),
+id varchar2(20) primary key,
+pw varchar2(20) NOT NULL,
+n_id varchar2(20) NOT NULL UNIQUE,
+tel varchar2(20) NOT NULL,
+sido varchar2(20) NOT NULL,
+gu varchar2(20) NOT NULL,
+doro varchar2(20) NOT NULL,
+d_juso varchar2(50),
+postnum varchar2(20) NOT NULL,
+email varchar2(20) NOT NULL UNIQUE,
+u_sex char(1) NOT NULL,
+u_birthday date NOT NULL,
+u_name varchar2(20) NOT NULL,
+u_enrollday date NOT NULL,
+status char(1) NOT NULL,
+manage char(1) NOT NULL,
+petnum number NOT NULL,
+friend char(1),
+f_id varchar2(20)  -->
+
+<mapper namespace="memberMapper">
+  <select id="view" resultType="vo.Member">
+  select * from member 
+  </select>
+  
+  <select id="MemberFind">
+  	select * from member where no=#{no}
+  </select>
+  
+  
+  <insert id="memberInsert" >
+  insert into member (no,id,pw,n_id,tel,sido,gu,doro,d_juso,postnum,email,u_sex,u_birthday,u_name,u_enrollday,status,manage,petnum,friend,f_id)
+  values (seq_no.nextval,#{id},#{pw},#{n_id},#{tel},#{sido},#{gu},#{doro},#{d_juso},#{postnum},#{email},#{u_sex},#{u_birthday},#{u_name},#{u_enrollday},#{status},#{manage},#{petnum},#{friend},#{f_id})
+</insert>
+
+<delete id="memberDelete" >
+  delete from member where no = #{no}
+</delete>
+
+<update id="memberUpdate">
+  update member set
+   price = #{tel}
+    where no =#{no}
+</update>
+  
+</mapper>
